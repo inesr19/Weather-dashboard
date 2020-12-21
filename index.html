@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./Assets/stylesheet.css" />
     <title>Weather</title>
 </head>
+
 <body>
-    
+    <nav class="navbar-dark bg-dark">
+        <h1>Weather Dashboard</h1>
+    </nav>
+    <div class="container">
+        <div class="col-md-4" id="searchCity">
+            <input class="searchBar" type="text" placeholder="Ex. Portland, Oregon">
+            <button class="searchBtn">Search</button>
+            <div class="searchedCities"></div>
+        </div>
+        <div class="col-md-8">
+            <div class="city"></div>
+            <div class="temp"></div>
+            <div class="humidity"></div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
 </body>
+
 </html>
