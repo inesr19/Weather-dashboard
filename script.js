@@ -7,6 +7,13 @@
         method: "GET"
     }).then(function(response) {
         console.log(response)
+
+       var tempFar = (response.main.temp - 273.15) * 1.80 + 32;
+       $('.temp').text('Temperature(F): ' + tempFar.toFixed(2) + '\u00B0');
+
+       $('.humidity').text('Humidity: ' + response.main.humidity + '%');
+
+       $('.wind').text('Wind Speed: ' + response.wind.speed + 'mph');
     });
     })
     
