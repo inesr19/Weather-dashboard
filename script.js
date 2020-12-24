@@ -34,5 +34,26 @@ $('.searchBtn').on('click', displayInfo);
      }).then(function (response) {
          console.log(response)
          $('.uv-index').text('UV Index: ' + response.current.uvi);
+
+         if (response.current.uvi <= 2) {
+             $('.uv-index').addClass('low');
+         } else if (response.current.uvi > 3 || response.current.uvi == 8) {
+            $('.uv-index').addClass('moderate');
+         } else if (response.current.uvi > 8) {
+            $('.uv-index').addClass('high');
+         }
      });
  }
+
+//  function dailyWeather() {
+//     var apiKey = 'd9414f7879ddedfc3df78e947516ecc0'
+//     var queryUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,minutely&appid=' + apiKey;
+//    // AJAX call for UV Index
+//     $.ajax({
+//         url: queryUrl,
+//         method: "GET"
+//     }).then(function (response) {
+//         console.log(response)
+//         $('.uv-index').text('UV Index: ' + response.current.uvi);
+//     });
+//  }
