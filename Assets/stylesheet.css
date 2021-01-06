@@ -1,5 +1,13 @@
 h1 {
     text-align: center;
+    color: balck;
+}
+
+.searchBtn {
+    position: top center;
+}
+
+::placeholder {
     color: white;
 }
 
@@ -17,3 +25,8 @@ h1 {
     background-color: red;
     color: white;
 }
+
+/* .container-day {
+    box-shadow: 0 0 5px;
+    border-radius: 5px;
+} */

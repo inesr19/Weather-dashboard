@@ -23,7 +23,7 @@ function displayInfo(cityName) {
     });
 }
 
-$('.searchBtn').on('click', displayInfo);
+$('.btn').on('click', displayInfo);
 
 
 function displayIndex(lat, lon) {
@@ -69,12 +69,16 @@ function dailyWeather(lat, lon) {
             const iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
             
             $('<div>', {
+                class: 'col-sm',
                 text: `${newDate}`
             }).append($('<img>', {
+                class: 'col-sm',
                 src: iconUrl
             })).append($('<div>', {
+                class: 'col-sm',
                 text: response.daily[i].temp.day + '\u00B0'
             })).append($('<div>', {
+                class: 'col-sm',
                 text: response.daily[i].humidity + '%'
             })).appendTo('.container-day');
         }
