@@ -2,7 +2,7 @@
 function displayInfo(cityName) {
     var cityName = $('.searchBar').val();
     var apiKey = 'd9414f7879ddedfc3df78e947516ecc0'
-    var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
+    var queryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
 
     $.ajax({
         url: queryUrl,
