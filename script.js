@@ -16,7 +16,7 @@ function displayInfo(cityName) {
         $('.city').text(response.name);
         // Display current weather icon
         const iconImage = response.weather[0].icon
-        const iconImageUrl = 'https://openweathermap.org/img/wn/' + iconImage + '@2x.png'
+        const iconImageUrl = 'http://openweathermap.org/img/wn/' + iconImage + '@2x.png'
         $('<img>', {
             src: iconImageUrl
         }).appendTo('.city')
@@ -73,7 +73,7 @@ function dailyWeather(lat, lon) {
             // Display png icon of daily forecast
             const iconId = response.daily[i].weather[0].icon
             console.log(iconId)
-            const iconUrl = 'https://openweathermap.org/img/wn/' + iconId + '@2x.png';
+            const iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
 
             // 5 day forecast displayed information
             $('<div>', {
