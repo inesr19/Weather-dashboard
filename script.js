@@ -1,9 +1,9 @@
 
 function displayInfo(cityName) {
     var cityName = $('.searchBar').val();
-    var apiKey = 'd9414f7879ddedfc3df78e947516ecc0'
-    var queryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
-
+    const apiKey = 'd9414f7879ddedfc3df78e947516ecc0'
+    const queryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
+    
     $.ajax({
         url: queryUrl,
         method: "GET"
@@ -26,11 +26,14 @@ function displayInfo(cityName) {
         $('.humidity').text('Humidity: ' + response.main.humidity + '%');
         // Display wind speed mph
         $('.wind').text('Wind Speed: ' + response.wind.speed + 'mph');
+
+        // Local storage for searched cities
+        localStorage.setItem('city', cityName)
     });
+    console.log(localStorage)
 }
 
 $('.btn').on('click', displayInfo);
-
 
 function displayIndex(lat, lon) {
     var apiKey = 'd9414f7879ddedfc3df78e947516ecc0'
@@ -69,16 +72,17 @@ function dailyWeather(lat, lon) {
             console.log(unixTime);
             const date = new Date(unixTime * 1000);
             const newDate = date.toLocaleDateString("en-US");
-
+            
             // Display png icon of daily forecast
             const iconId = response.daily[i].weather[0].icon
             console.log(iconId)
             const iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
-
+            
             // 5 day forecast displayed information
             $('<div>', {
                 text: `${newDate}`
             }).append($('<img>', {
+                class: 'image',
                 src: iconUrl
             })).append($('<div>', {
                 text: response.daily[i].temp.day + '\u00B0'
