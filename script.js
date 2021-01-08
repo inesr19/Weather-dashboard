@@ -12,8 +12,14 @@ function displayInfo(cityName) {
         // Grabing coordinates for second and third ajax call.
         displayIndex(response.coord.lat, response.coord.lon);
         dailyWeather(response.coord.lat, response.coord.lon);
-        // Display city name and icon
+        // Display city name
         $('.city').text(response.name);
+        // Display current weather icon
+        const iconImage = response.weather[0].icon
+        const iconImageUrl = 'https://openweathermap.org/img/wn/' + iconImage + '@2x.png'
+        $('<img>', {
+            src: iconImageUrl
+        }).appendTo('.city')
         // Display temperature in Fahrenheit
         $('.temp').text('Temperature(F): ' + response.main.temp + '\u00B0');
         // Display humidity percentage
@@ -57,29 +63,27 @@ function dailyWeather(lat, lon) {
     }).then(function (response) {
         console.log(response)
 
-
+        // Displays mm/dd/yyyy for 5 day forecast
         for (let i = 1; i < 6; i++) {
             const unixTime = response.daily[i].dt
             console.log(unixTime);
             const date = new Date(unixTime * 1000);
             const newDate = date.toLocaleDateString("en-US");
 
-            const iconId = response.daily[i].weather.icon
+            // Display png icon of daily forecast
+            const iconId = response.daily[i].weather[0].icon
             console.log(iconId)
-            const iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
-            
+            const iconUrl = 'https://openweathermap.org/img/wn/' + iconId + '@2x.png';
+
+            // 5 day forecast displayed information
             $('<div>', {
-                class: 'col-sm',
                 text: `${newDate}`
             }).append($('<img>', {
-                class: 'col-sm',
                 src: iconUrl
             })).append($('<div>', {
-                class: 'col-sm',
                 text: response.daily[i].temp.day + '\u00B0'
             })).append($('<div>', {
-                class: 'col-sm',
-                text: response.daily[i].humidity + '%'
+                text: response.daily[i].humidity + '%',
             })).appendTo('.container-day');
         }
 
