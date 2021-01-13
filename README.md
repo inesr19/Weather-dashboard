@@ -6,6 +6,8 @@ The purpose of this webpage is to give the user current weather data and the fiv
 
 ### Screenshot
 
+![Weather Dashboard screenshot](https://github.com/inesr19/Weather-dashboard/blob/main/Assets/Image/weatherApp.png)
+
 ### Link
 
 <https://inesr19.github.io/Weather-dashboard/>
