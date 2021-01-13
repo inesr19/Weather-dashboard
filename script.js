@@ -1,8 +1,9 @@
 
 function displayInfo(cityName) {
-    var cityName = $('.searchBar').val();
+    // var cityName = $('.searchBar').val();
     const apiKey = 'd9414f7879ddedfc3df78e947516ecc0'
     const queryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
+    
     
     $.ajax({
         url: queryUrl,
@@ -12,6 +13,7 @@ function displayInfo(cityName) {
         // Grabing coordinates for second and third ajax call.
         displayIndex(response.coord.lat, response.coord.lon);
         dailyWeather(response.coord.lat, response.coord.lon);
+        
         // Display city name
         $('.city').text(response.name);
         // Display current weather icon
@@ -30,10 +32,20 @@ function displayInfo(cityName) {
         // Local storage for searched cities
         localStorage.setItem('city', cityName)
     });
-    console.log(localStorage)
 }
 
-$('.btn').on('click', displayInfo);
+$('.btn').on('click', function(){
+    var city = $('.searchBar').val();
+    const btn = $(`<button class="btn city-search">${city}</button>`);
+    $('#city-list').append(btn); 
+    displayInfo(city); 
+});
+function handleCityListClick() {
+    const cityNameFromBtn = $(this).text()
+    
+    displayInfo(cityNameFromBtn)
+}
+$(document).on('click', ".city-search", handleCityListClick)
 
 function displayIndex(lat, lon) {
     var apiKey = 'd9414f7879ddedfc3df78e947516ecc0'
@@ -65,6 +77,8 @@ function dailyWeather(lat, lon) {
         method: "GET"
     }).then(function (response) {
         console.log(response)
+
+        $('.container-day').empty();
 
         // Displays mm/dd/yyyy for 5 day forecast
         for (let i = 1; i < 6; i++) {
